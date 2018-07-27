@@ -9,6 +9,7 @@ import os
 # DIRECTORY INFORMATION
 ROOT_DIR = os.path.abspath('../')
 DATA_DIR = os.path.join(ROOT_DIR, 'DATASET/')
+EMBEDDING_DIR = os.path.join(ROOT_DIR, 'EMBEDDING/')
 OUT_DIR = os.path.join(ROOT_DIR, 'RESULT/')
 MODEL_DIR = os.path.join(ROOT_DIR, 'MODEL/')
 
@@ -22,11 +23,11 @@ SEED = 128
 # TRAINING INFORMATION
 NUM_EPOCHS = 400
 INITIAL_LEARNING_RATE = 0.01
-BATCH_SIZE = 5
+BATCH_SIZE = 6
 
 NUM_CLASS = 5
 
-emoji_dictionary = {"0": "\u2764\uFE0F",    # :heart: prints a black instead of red heart depending on the font
+emoji_dictionary = {"0": "\u2764\uFE0F",
                     "1": ":baseball:",
                     "2": ":smile:",
                     "3": ":disappointed:",
