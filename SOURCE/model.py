@@ -28,11 +28,11 @@ class MODEL():
         def build(self):
             self.e_layer = neural_network.Embedding_Layer([self.vocab_size, config.EMBEDDING_SIZE])
             inputs = self.e_layer.lookup(self.inputs)
-
+            
             rnn_graph = neural_network.RNN_Graph([config.HIDDEN_SIZE, config.NUM_LAYERS], config.BATCH_SIZE)
             self.initial_state = rnn_graph.initial_state
             output, state = rnn_graph.feed_forward(inputs)
-
+            
             output = tf.reshape(output[:, -1, :], [-1, config.HIDDEN_SIZE])
             fc_layer = neural_network.Softmax_Layer([config.HIDDEN_SIZE, config.NUM_CLASS])
             self.logits = fc_layer.feed_forward(output)
@@ -62,12 +62,12 @@ class MODEL():
                 print("Epoch:", (epoch + 1), "cost =", "{:.3f}".format(cost))
                 saver.save(session, os.path.join(config.MODEL_DIR, "model.ckpt"))
 
-        def test(self, data):
+        def test(self, data, embedding_matrix):
             saver = tf.train.Saver()
-            with tf.Session as session:
+            with tf.Session() as session:
                 saver.restore(session, os.path.join(config.MODEL_DIR, "model.ckpt"))
                 state = session.run(self.initial_state)
                 for i in range(len(data.dataX)):
                     feed_dict = {self.inputs: [data.dataX[i]], self.initial_state: state}
-                    predicted = np.rint(session.run(self.output, feed_dict=feed_dict))
+                    predicted, state = session.run([self.logits, self.final_state], feed_dict=feed_dict)
                     print('Actual:', data.dataY[i], 'Predicted:', predicted)

@@ -8,7 +8,6 @@ Created on Sun Jul 22 07:06:16 2018
 import tensorflow as tf
 import config
 
-
 class Embedding_Layer():
 
     def __init__(self, shape):
@@ -51,5 +50,5 @@ class Softmax_Layer():
         self.biases = tf.get_variable("softmax_b", shape=[shape[1]], dtype=tf.float32)
 
     def feed_forward(self, input_data):
-        logits = tf.nn.xw_plus_b(input_data, self.weights, self.biases)
+        logits = tf.nn.softmax(tf.matmul(input_data, self.weights) + self.biases)
         return logits
