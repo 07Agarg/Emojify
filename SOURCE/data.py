@@ -12,16 +12,17 @@ import numpy as np
 
 class DATA():
 
-    def __init__(self):
-        self.batch_size = config.BATCH_SIZE
+    def __init__(self, CONFIG):
+        self.config = CONFIG
         self.batch = None
         self.dataX = None
         self.dataY = None
         self.size = None
         self.data_index = 0
+        self.batch_size = self.config.BATCH_SIZE
 
     def sentence_to_indices(self, data, word_to_index):
-        sentence_index = np.zeros((self.size, config.NUM_STEPS))
+        sentence_index = np.zeros((self.size, self.config.NUM_STEPS))
         for i in range(self.size):
             sentence_words = data[i].lower().split()
             for j, word in enumerate(sentence_words):

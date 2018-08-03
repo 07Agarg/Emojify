@@ -14,7 +14,7 @@ def label_to_emoji(label):
     return emoji.emojize(config.emoji_dictionary[str(label)], use_aliases = True)
 
 def read_glove_vecs(glove_file):
-    with open(glove_file, 'r') as file:
+    with open(glove_file, 'r', encoding = "utf-8") as file:
         word_to_index = {}
         word_to_vec = {}
         index_to_word = {}
