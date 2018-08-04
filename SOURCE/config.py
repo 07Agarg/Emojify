@@ -32,13 +32,12 @@ EMBEDDING_SIZE = 50
 class TrainConfig(object):
 	NUM_EPOCHS = 400
 	INITIAL_LEARNING_RATE = 0.001
-	BATCH_SIZE = 6
+	BATCH_SIZE = 12
 	NUM_CLASS = 5
-	HIDDEN_SIZE = 128
+	HIDDEN_SIZE = 256
 	NUM_STEPS = 10
 	NUM_LAYERS = 2
 	keep_prob = 0.5
-	init_scale = 0.05
 
 #TEST CONFIG	
 class TestConfig(object):
@@ -46,8 +45,7 @@ class TestConfig(object):
 	INITIAL_LEARNING_RATE = 0.001
 	BATCH_SIZE = 1
 	NUM_CLASS = 5
-	HIDDEN_SIZE = 128
+	HIDDEN_SIZE = 256
 	NUM_STEPS = 10
 	NUM_LAYERS = 2
 	keep_prob = 0.5
-	init_scale = 0.05

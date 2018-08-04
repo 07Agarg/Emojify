@@ -30,14 +30,14 @@ if __name__ == "__main__":
     print("Test data Loaded")
     
     # BUILD MODEL
-    initializer = tf.random_uniform_initializer(train_config.init_scale, train_config.init_scale)												
+    #initializer = tf.random_uniform_initializer(train_config.init_scale, train_config.init_scale)												
     with tf.name_scope("Train"):
-        with tf.variable_scope("Model", reuse = None, initializer=initializer):
+        with tf.variable_scope("Model", reuse = None):
             train_model = model.MODEL(train_config, len(word_to_index), training = True)
             train_model.build()
 	
     with tf.name_scope("Test"):
-        with tf.variable_scope("Model", reuse = True, initializer=initializer):
+        with tf.variable_scope("Model", reuse = True):
             test_model = model.MODEL(test_config, len(word_to_index), training = False)
             test_model.build()
     print("Model Built")
